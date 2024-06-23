@@ -1,0 +1,54 @@
+﻿@model PFVJ1.Models.Datos
+@{
+    // Establece el título de la página.
+    ViewData["Title"] = "Eliminar";
+
+    // Define la disposición general utilizando una vista compartida.
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+// Mensaje de advertencia en color rojo para confirmar la eliminación del juego.
+<h3 class="text-danger"> ¿Está seguro de eliminar el Juego?</h3>
+<hr />
+<div class="row">
+    <div class="col-sm-4">
+        <!-- Formulario para eliminar un videojuego -->
+        <form asp-action="Eliminar" asp-controller="Home" method="post">
+            <!-- Campo oculto para el ID del videojuego -->
+            <input type="hidden" asp-for="IdVideojuego" />
+
+            <!-- Campo deshabilitado para mostrar el nombre del videojuego -->
+            <div class="mb-2">
+                <label class="form-label" asp-for="Nombre">Nombre completo</label>
+                <input class="form-control form-control-sm" asp-for="Nombre" type="text" disabled />
+            </div>
+
+            <!-- Campo deshabilitado para mostrar el precio del videojuego -->
+            <div class="mb-2">
+                <label class="form-label" asp-for="Precio">Precio</label>
+                <input class="form-control form-control-sm" asp-for="Precio" type="text" disabled />
+            </div>
+
+            <!-- Campo deshabilitado para mostrar el stock del videojuego -->
+            <div class="mb-2">
+                <label class="form-label" asp-for="Stock">Stock</label>
+                <input class="form-control form-control-sm" asp-for="Stock" type="text" disabled />
+            </div>
+
+            <!-- Campo deshabilitado para mostrar la categoría del videojuego -->
+            <div class="mb-3">
+                <label class="form-label" asp-for="IdCategoria">Categoría</label>
+                <input class="form-control form-control-sm" asp-for="VideojuegosDB.NombreCategoria" type="text" disabled />
+            </div>
+
+            <!-- Botones para confirmar la eliminación o volver a la página de inicio -->
+            <div class="mb-2">
+                <!-- Botón para confirmar la eliminación del videojuego -->
+                <button class="btn btn-danger btn-sm w-25" type="submit">Eliminar</button>
+
+                <!-- Botón para volver a la página de inicio sin eliminar -->
+                <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>

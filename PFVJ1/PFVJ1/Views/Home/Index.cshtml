@@ -1,0 +1,51 @@
+﻿@model List<PFVJ1.Models.Datos>
+@{
+    ViewData["Title"] = "Proyecto UAA";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido!</h1>
+    <p>Proyecto de Tienda de VideoJuegos UAA</p>
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Lista de VideoJuegos</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="VideoJuego_Detalle" asp-controller="Home" asp-route-IdVideojuego="0">Agregar VideoJuego</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre del Videojuego</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Categoría</th>
+                    <!-- Encabezados de la tabla -->
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteración sobre cada elemento en el modelo -->
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <!-- Columnas de la tabla con los datos de cada videojuego -->
+                        <td>@item.Nombre</td>
+                        <td>@item.Precio</td>
+                        <td>@item.Stock</td>
+                        <td>@item.VideojuegosDB.NombreCategoria</td>
+                        <td>
+                            <!-- Botones para editar y eliminar cada videojuego -->
+                            <a class="btn btn-primary btn-sm" asp-action="VideoJuego_Detalle" asp-controller="Home" asp-route-IdVideojuego="@item.IdVideojuego">Editar</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Eliminar" asp-controller="Home" asp-route-IdVideojuego="@item.IdVideojuego">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

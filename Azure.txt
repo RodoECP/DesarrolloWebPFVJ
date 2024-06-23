@@ -1,0 +1,5 @@
+adminUAA
+Administrador1997
+
+proyectosuaa.database.windows.net
+

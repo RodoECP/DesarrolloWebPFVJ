@@ -1,0 +1,70 @@
+﻿@model PFVJ1.Models.ViewModels.VideojuegosVM
+@{
+    // Establece el título de la página.
+    ViewData["Title"] = "VideoJuego_Detalle";
+
+    // Define la disposición general utilizando una vista compartida.
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+// Condicional para mostrar el título adecuado según se esté registrando o editando un videojuego.
+@if (Model.oDatos.IdVideojuego == 0)
+{
+    <h1>Registrar Videojuego</h1> <!-- Título para registrar un nuevo videojuego -->
+}
+else
+{
+    <h1>Editar Videojuego</h1> <!-- Título para editar un videojuego existente -->
+}
+
+<div class="row">
+    <div class="col-sm-4">
+        <!-- Formulario para registrar o editar un videojuego -->
+        <form asp-action="VideoJuego_Detalle" asp-controller="Home" method="post">
+            <!-- Campo oculto para el ID del videojuego -->
+            <input type="hidden" asp-for="oDatos.IdVideojuego" />
+
+            <!-- Campo para el nombre del videojuego -->
+            <div class="mb-2">
+                <label class="form-label" asp-for="oDatos.Nombre">Nombre del Videojuego</label>
+                <input class="form-control form-control-sm" asp-for="oDatos.Nombre" type="text" />
+            </div>
+
+            <!-- Campo para el precio del videojuego -->
+            <div class="mb-2">
+                <label class="form-label" asp-for="oDatos.Precio">Precio del Videojuego</label>
+                <input class="form-control form-control-sm" asp-for="oDatos.Precio" type="text" />
+            </div>
+
+            <!-- Campo para el stock del videojuego -->
+            <div class="mb-2">
+                <label class="form-label" asp-for="oDatos.Stock">Stock del Videojuego</label>
+                <input class="form-control form-control-sm" asp-for="oDatos.Stock" type="text" />
+            </div>
+
+            <!-- Campo para seleccionar la categoría del videojuego -->
+            <div class="mb-2">
+                <label class="form-label" asp-for="oDatos.IdCategoria">Categoria del Videojuego</label>
+                <select class="form-select form-select-sm" asp-for="oDatos.IdCategoria" asp-items="@Model.oLista">
+                    <option selected disabled>-- Seleccionar --</option>
+                </select>
+            </div>
+
+            <!-- Botones para registrar o actualizar el videojuego -->
+            <div class="mb-2">
+                @if (Model.oDatos.IdVideojuego == 0)
+                {
+                    <!-- Botón para registrar un nuevo videojuego -->
+                    <button class="btn btn-primary btn-sm w-25" type="submit">Registrar</button>
+                }
+                else
+                {
+                    <!-- Botón para actualizar un videojuego existente -->
+                    <button class="btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
+                }
+                <!-- Botón para volver a la página de inicio -->
+                <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
